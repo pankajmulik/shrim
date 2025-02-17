@@ -3,19 +3,27 @@ import { useNavigate } from 'react-router-dom';
 import data from '../data/data';
 import Carousel from '../component/carousel/Carousel';
 import 'swiper/css';
-
+import Loader from '../component/loader/Loader';
 import BrandCarousel from '../component/BrandCarousel'
 import Card from '../component/card/Card';
 
 const Home = () => {
   const navigate = useNavigate();
   const [productdata, setproductdata] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+
 
   useEffect(() => {
     fetch('http://localhost:8080/product/smm')
       .then(res => res.json())
       .then(json => setproductdata(json))
       .catch(error => console.error('Error fetching product data:', error));
+    
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+    
   }, []);
 
   console.log(productdata)
@@ -26,6 +34,9 @@ const Home = () => {
   console.log(productdata)
   return (
     <div className='grid h-auto w-screen my-10 pt-4 '> {/* Added padding-top */}
+      
+      {isLoading ? <Loader /> : <div>Your content here</div>}
+
       <div className='mx-auto my-2 h-auto'>
         <Carousel />
       </div>
