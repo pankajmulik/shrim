@@ -6,7 +6,7 @@ import 'swiper/css';
 import Loader from '../component/loader/Loader';
 import BrandCarousel from '../component/BrandCarousel'
 import Card from '../component/card/Card';
-
+import Navbar from '../component/navbar/Navbar';
 const Home = () => {
   const navigate = useNavigate();
   const [productdata, setproductdata] = useState([]);
@@ -35,7 +35,9 @@ const Home = () => {
   return (
     <div className='grid h-auto w-screen my-10 pt-4 '> {/* Added padding-top */}
       
-      {isLoading ? <Loader /> : <div>Your content here</div>}
+      {isLoading ? <Loader /> : <div>
+
+      <Navbar></Navbar>
 
       <div className='mx-auto my-2 h-auto'>
         <Carousel />
@@ -113,10 +115,15 @@ const Home = () => {
 
 
       </div>
+      </div>}
 
+      </div>
+      
+    
 
-    </div>
   );
+      
+      
 };
 
 export default Home;
